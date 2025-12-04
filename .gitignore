@@ -39,3 +39,7 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+# Build tools
+actionlint
+*.tar.gz

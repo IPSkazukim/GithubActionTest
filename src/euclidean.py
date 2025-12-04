@@ -23,7 +23,14 @@ class EuclideanGCD:
     """
     
     def __init__(self):
-        """EuclideanGCDクラスのコンストラクタ"""
+        """EuclideanGCDクラスのコンストラクタ
+        
+        ```mermaid
+        flowchart TD
+            Start([開始]) --> Create[Calculatorインスタンスを作成]
+            Create --> End([終了])
+        ```
+        """
         self.calculator = Calculator()
     
     def gcd(self, a: int, b: int) -> int:
@@ -45,6 +52,25 @@ class EuclideanGCD:
         
         Raises:
             ValueError: aまたはbが負の数の場合
+        
+        ```mermaid
+        flowchart TD
+            Start([開始]) --> Input[/入力: a, b/]
+            Input --> CheckNeg{a < 0 or b < 0?}
+            CheckNeg -->|Yes| Error[ValueErrorを発生]
+            Error --> End1([終了])
+            CheckNeg -->|No| CheckZero{b == 0?}
+            CheckZero -->|Yes| ReturnA[/aを返す/]
+            ReturnA --> End2([終了])
+            CheckZero -->|No| Loop[ループ: b != 0の間]
+            Loop --> CalcQuot[quotient = a // b]
+            CalcQuot --> CalcRem[remainder = a - quotient * b<br/>Calculatorを使用]
+            CalcRem --> Update[a = b<br/>b = remainder]
+            Update --> CheckLoop{b != 0?}
+            CheckLoop -->|Yes| Loop
+            CheckLoop -->|No| ReturnResult[/aを返す/]
+            ReturnResult --> End3([終了])
+        ```
         
         Examples:
             >>> euclidean = EuclideanGCD()

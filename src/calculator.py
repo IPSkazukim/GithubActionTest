@@ -20,7 +20,14 @@ class Calculator:
     """
     
     def __init__(self):
-        """Calculatorクラスのコンストラクタ"""
+        """Calculatorクラスのコンストラクタ
+        
+        ```mermaid
+        flowchart TD
+            Start([開始]) --> Init[空のhistoryリストを初期化]
+            Init --> End([終了])
+        ```
+        """
         self.history = []
     
     def add(self, a: float, b: float) -> float:
@@ -33,6 +40,15 @@ class Calculator:
         
         Returns:
             float: 加算結果
+        
+        ```mermaid
+        flowchart TD
+            Start([開始]) --> Input[/入力: a, b/]
+            Input --> Calc[result = a + b]
+            Calc --> Record[履歴に記録]
+            Record --> Return[/結果を返す: result/]
+            Return --> End([終了])
+        ```
         
         Examples:
             >>> calc = Calculator()
@@ -53,6 +69,15 @@ class Calculator:
         
         Returns:
             float: 減算結果
+        
+        ```mermaid
+        flowchart TD
+            Start([開始]) --> Input[/入力: a, b/]
+            Input --> Calc[result = a - b]
+            Calc --> Record[履歴に記録]
+            Record --> Return[/結果を返す: result/]
+            Return --> End([終了])
+        ```
         """
         result = a - b
         self.history.append(f"{a} - {b} = {result}")
@@ -68,6 +93,15 @@ class Calculator:
         
         Returns:
             float: 乗算結果
+        
+        ```mermaid
+        flowchart TD
+            Start([開始]) --> Input[/入力: a, b/]
+            Input --> Calc[result = a * b]
+            Calc --> Record[履歴に記録]
+            Record --> Return[/結果を返す: result/]
+            Return --> End([終了])
+        ```
         """
         result = a * b
         self.history.append(f"{a} * {b} = {result}")
@@ -86,6 +120,18 @@ class Calculator:
         
         Raises:
             ValueError: bが0の場合
+        
+        ```mermaid
+        flowchart TD
+            Start([開始]) --> Input[/入力: a, b/]
+            Input --> Check{b == 0?}
+            Check -->|Yes| Error[ValueErrorを発生]
+            Error --> End1([終了])
+            Check -->|No| Calc[result = a / b]
+            Calc --> Record[履歴に記録]
+            Record --> Return[/結果を返す: result/]
+            Return --> End2([終了])
+        ```
         """
         if b == 0:
             raise ValueError("0で除算することはできません")
@@ -99,9 +145,23 @@ class Calculator:
         
         Returns:
             list: これまでの計算履歴のリスト
+        
+        ```mermaid
+        flowchart TD
+            Start([開始]) --> Copy[履歴リストのコピーを作成]
+            Copy --> Return[/コピーを返す/]
+            Return --> End([終了])
+        ```
         """
         return self.history.copy()
     
     def clear_history(self):
-        """計算履歴をクリアします"""
+        """計算履歴をクリアします
+        
+        ```mermaid
+        flowchart TD
+            Start([開始]) --> Clear[履歴リストをクリア]
+            Clear --> End([終了])
+        ```
+        """
         self.history.clear()

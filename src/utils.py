@@ -18,6 +18,14 @@ def format_number(num: Union[int, float], decimals: int = 2) -> str:
     Returns:
         str: フォーマットされた数値文字列
     
+    ```mermaid
+    flowchart TD
+        Start([開始]) --> Input[/入力: num, decimals/]
+        Input --> Format[f-stringで指定桁数に<br/>フォーマット]
+        Format --> Return[/フォーマット済み文字列を返す/]
+        Return --> End([終了])
+    ```
+    
     Examples:
         >>> format_number(3.14159, 2)
         '3.14'
@@ -40,6 +48,18 @@ def average(numbers: List[Union[int, float]]) -> float:
     Raises:
         ValueError: リストが空の場合
     
+    ```mermaid
+    flowchart TD
+        Start([開始]) --> Input[/入力: numbers/]
+        Input --> Check{リストは空?}
+        Check -->|Yes| Error[ValueErrorを発生]
+        Error --> End1([終了])
+        Check -->|No| Sum[合計を計算]
+        Sum --> Divide[合計を要素数で除算]
+        Divide --> Return[/平均値を返す/]
+        Return --> End2([終了])
+    ```
+    
     Examples:
         >>> average([1, 2, 3, 4, 5])
         3.0
@@ -60,6 +80,26 @@ def is_prime(n: int) -> bool:
     
     Returns:
         bool: 素数の場合True、そうでない場合False
+    
+    ```mermaid
+    flowchart TD
+        Start([開始]) --> Input[/入力: n/]
+        Input --> Check1{n < 2?}
+        Check1 -->|Yes| ReturnFalse1[/False を返す/]
+        ReturnFalse1 --> End1([終了])
+        Check1 -->|No| Check2{n == 2?}
+        Check2 -->|Yes| ReturnTrue1[/True を返す/]
+        ReturnTrue1 --> End2([終了])
+        Check2 -->|No| Check3{n % 2 == 0?}
+        Check3 -->|Yes| ReturnFalse2[/False を返す/]
+        ReturnFalse2 --> End3([終了])
+        Check3 -->|No| Loop[3から√nまでの奇数で<br/>割り切れるか確認]
+        Loop --> Check4{割り切れる?}
+        Check4 -->|Yes| ReturnFalse3[/False を返す/]
+        ReturnFalse3 --> End4([終了])
+        Check4 -->|No| ReturnTrue2[/True を返す/]
+        ReturnTrue2 --> End5([終了])
+    ```
     
     Examples:
         >>> is_prime(7)

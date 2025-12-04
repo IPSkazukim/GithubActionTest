@@ -27,7 +27,7 @@ class EuclideanGCD:
         
         ```mermaid
         flowchart TD
-            Start([開始]) --> Create[Calculatorインスタンスを作成]
+            Start([開始]) --> Create[Calculatorインスタンスを<br/>作成してself.calculatorに代入]
             Create --> End([終了])
         ```
         """

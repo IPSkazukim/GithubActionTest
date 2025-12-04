@@ -94,7 +94,7 @@ def is_prime(n: int) -> bool:
         Check3 -->|Yes| ReturnFalse2[/False を返す/]
         ReturnFalse2 --> End3([終了])
         Check3 -->|No| InitLoop[i = 3]
-        InitLoop --> LoopCheck{i <= √n?}
+        InitLoop --> LoopCheck{i <= sqrt\(n\)?}
         LoopCheck -->|No| ReturnTrue2[/True を返す/]
         ReturnTrue2 --> End4([終了])
         LoopCheck -->|Yes| CheckDiv{n % i == 0?}

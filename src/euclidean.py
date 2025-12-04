@@ -62,13 +62,12 @@ class EuclideanGCD:
             CheckNeg -->|No| CheckZero{b == 0?}
             CheckZero -->|Yes| ReturnA[/aを返す/]
             ReturnA --> End2([終了])
-            CheckZero -->|No| Loop[ループ: b != 0の間]
-            Loop --> CalcQuot[quotient = a // b]
-            CalcQuot --> CalcRem[remainder = a - quotient * b<br/>Calculatorを使用]
+            CheckZero -->|No| Loop[quotient = a // b]
+            Loop --> CalcRem[remainder = a - quotient * b<br/>Calculatorを使用]
             CalcRem --> Update[a = b<br/>b = remainder]
-            Update --> CheckLoop{b != 0?}
-            CheckLoop -->|Yes| Loop
-            CheckLoop -->|No| ReturnResult[/aを返す/]
+            Update --> CheckLoop{b == 0?}
+            CheckLoop -->|No| Loop
+            CheckLoop -->|Yes| ReturnResult[/aを返す/]
             ReturnResult --> End3([終了])
         ```
         

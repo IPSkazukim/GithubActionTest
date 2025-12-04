@@ -93,12 +93,15 @@ def is_prime(n: int) -> bool:
         Check2 -->|No| Check3{n % 2 == 0?}
         Check3 -->|Yes| ReturnFalse2[/False を返す/]
         ReturnFalse2 --> End3([終了])
-        Check3 -->|No| Loop[3から√nまでの奇数で<br/>割り切れるか確認]
-        Loop --> Check4{割り切れる?}
-        Check4 -->|Yes| ReturnFalse3[/False を返す/]
-        ReturnFalse3 --> End4([終了])
-        Check4 -->|No| ReturnTrue2[/True を返す/]
-        ReturnTrue2 --> End5([終了])
+        Check3 -->|No| InitLoop[i = 3]
+        InitLoop --> LoopCheck{i <= √n?}
+        LoopCheck -->|No| ReturnTrue2[/True を返す/]
+        ReturnTrue2 --> End4([終了])
+        LoopCheck -->|Yes| CheckDiv{n % i == 0?}
+        CheckDiv -->|Yes| ReturnFalse3[/False を返す/]
+        ReturnFalse3 --> End5([終了])
+        CheckDiv -->|No| Increment[i += 2]
+        Increment --> LoopCheck
     ```
     
     Examples:

@@ -32,7 +32,7 @@ https://{username}.github.io/GithubActiontest/
 pip install -r requirements.txt
 
 # ドキュメントの生成
-pdoc --html --output-dir docs --force src
+pdoc3 --html --output-dir docs --force src
 ```
 
 ### プロジェクト構造

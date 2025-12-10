@@ -1,0 +1,44 @@
+name: Pylint
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - '**'  # すべてのブランチで実行
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  pylint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pylint
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      
+      - name: Run Pylint on src directory
+        run: |
+          pylint src/ --rcfile=.pylintrc || true
+      
+      - name: Run Pylint on test files
+        run: |
+          pylint test_*.py --rcfile=.pylintrc || true
+      
+      - name: Run Pylint (strict mode - will fail on issues)
+        run: |
+          echo "Running pylint in strict mode..."
+          pylint src/ test_*.py --rcfile=.pylintrc --fail-under=8.0
